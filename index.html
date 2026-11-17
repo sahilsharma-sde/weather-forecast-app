@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMEC Weather | Forecast by city</title>
+    <meta name="description" content="Five-day weather forecast for any city, built at ADMEC Multimedia Institute.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="bar">
+                <a class="brand" aria-label="ADMEC Weather home">
+                    <img src="images/admec-logo.png" alt="ADMEC Multimedia" class="logo">
+                    <span class="brand-title">Weather</span>
+                </a>
+                <div class="tools">
+                    <div class="unit-switch" role="group" aria-label="Temperature unit">
+                        <button type="button" data-unit="metric" aria-pressed="true">&deg;C</button>
+                        <button type="button" data-unit="imperial" aria-pressed="false">&deg;F</button>
+                    </div>
+                    <button type="button" class="icon-btn" id="themeToggle" aria-label="Switch theme">
+                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
+                    </button>
+                    <button type="button" class="icon-btn locate-btn" id="locationBtn">
+                        <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+                        <span>My location</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main">
+            <section class="finder" aria-labelledby="finderTitle">
+                <div class="finder-head">
+                    <h1 id="finderTitle">Check the forecast</h1>
+                    <p>Pick a country, then start typing a city.</p>
+                </div>
+
+                <form class="finder-form" id="searchForm" novalidate>
+                    <div class="field">
+                        <label for="country">Country</label>
+                        <select id="country" name="country">
+                            <option value="">Loading countries...</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="city">City</label>
+                        <input id="city" name="city" type="text" list="cityList" autocomplete="off" placeholder="Choose a country first" disabled>
+                        <datalist id="cityList"></datalist>
+                    </div>
+                    <button type="submit" class="btn-primary" id="searchBtn">Show forecast</button>
+                </form>
+
+                <p class="form-message" id="errorContainer" role="alert"></p>
+
+                <div class="recent" id="recentWrap" hidden>
+                    <span class="recent-label">Recent</span>
+                    <ul id="recentList"></ul>
+                </div>
+            </section>
+
+            <section class="results" id="weatherSection" aria-live="polite">
+                <div class="empty" id="emptyState">
+                    <h2>No forecast yet</h2>
+                    <p>Choose a country and city above, or use the location button to see the weather where you are.</p>
+                </div>
+
+                <div class="skeleton" id="loadingState" hidden aria-label="Loading forecast">
+                    <div class="sk-hero"></div>
+                    <div class="sk-row">
+                        <span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                </div>
+
+                <div class="forecast" id="weatherContent" hidden></div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-inner">
+                <div class="footer-about">
+                    <img src="images/admec-logo.png" alt="ADMEC Multimedia" class="footer-logo">
+                    <p>Student project from ADMEC Multimedia Institute, Delhi.</p>
+                </div>
+                <nav class="footer-links" aria-label="Footer">
+                    <a href="https://www.admecindia.co.in" target="_blank" rel="noopener">Website</a>
+                    <a href="https://www.admecindia.co.in/courses/" target="_blank" rel="noopener">Courses</a>
+                    <a href="https://www.admecindia.co.in/contact-us/" target="_blank" rel="noopener">Contact</a>
+                </nav>
+                <div class="footer-social">
+                    <a href="https://www.facebook.com/admecindia" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/admecinstitute" target="_blank" rel="noopener" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://www.linkedin.com/company/admec-multimedia-institute" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.youtube.com/c/admecindia" target="_blank" rel="noopener" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <p class="copyright">&copy; <span id="currentYear"></span> ADMEC Multimedia Institute. Weather data from OpenWeather.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
